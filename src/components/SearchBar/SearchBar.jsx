@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import css from './SearchBar.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -40,4 +40,4 @@ export default function SearchBar({onSubmit}) {
       </form>
     </header>
   );
-};
+}
