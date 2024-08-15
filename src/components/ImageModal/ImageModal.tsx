@@ -1,7 +1,16 @@
+import React from 'react';
 import Modal from 'react-modal';
 import css from './ImageModal.module.css';
+import { Image } from '../../image-api';
 
-export function ImageModal({ isOpen, onRequestClose, image }) {
+interface ImageModalProps {
+  isOpen: boolean;
+  onRequestClose: () => void;
+  image: Image | null;
+}
+
+
+const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onRequestClose, image }) => {
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} className={css.modal}
         overlayClassName={css.overlay}>
@@ -13,4 +22,6 @@ export function ImageModal({ isOpen, onRequestClose, image }) {
       )}
     </Modal>
     )
-}
+};
+
+export default ImageModal;

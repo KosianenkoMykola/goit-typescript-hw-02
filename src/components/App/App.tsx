@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react';
+import Ract, { useState, useEffect } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import ImageGallery from '../ImageGallery/ImageGallery';
 import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
-import { ImageModal } from '../ImageModal/ImageModal';
-import { fetchImages } from '../../image-api';
+import ImageModal from '../ImageModal/ImageModal';
+import { fetchImages, Image } from '../../image-api';
 import css from '../App/App.module.css';
 
 
-export default function App() {
-  const [images, setImages] = useState([]);
-  const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);
+const App = () => {
+  const [images, setImages] = useState<Image[]>([]);
+  const [query, setQuery] = useState<string>('');
+  const [page, setPage] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
 
   useEffect(() => {
     if (!query) return;
@@ -23,11 +23,11 @@ export default function App() {
     const loadImages = async () => {
       setIsLoading(true);
       try {
-        const data = await fetchImages(query, page);
+        const data = await fetchImages({topic: query, page});
         setImages((prevImages) => [...prevImages, ...data.results]);
         setError(null);
       } catch (err) {
-        setError('Failed to fetch images');
+        setError('Oops, something is wrong, try again later');
       } finally {
         setIsLoading(false);
       }
@@ -36,7 +36,7 @@ export default function App() {
     loadImages();
   }, [query, page]);
 
-  const handleSearch = (newQuery) => {
+  const handleSearch = (newQuery: string) => {
     setQuery(newQuery);
     setImages([]);
     setPage(1);
@@ -46,7 +46,7 @@ export default function App() {
     setPage((prevPage) => prevPage + 1);
   };
 
-  const handleImageClick = (image) => {
+  const handleImageClick = (image: Image) => {
     setSelectedImage(image);
   };
 
@@ -70,4 +70,6 @@ export default function App() {
       )}
     </div>
   );
-}
+};
+
+export default App;

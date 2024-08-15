@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import React, { useState, FormEvent, ChangeEvent } from 'react';
 import css from './SearchBar.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function SearchBar({onSubmit}) {
-    const [query, setQuery] = useState('');
+interface SearchBarProps {
+  onSubmit: (query: string) => void;
+}
 
-  const handleInputChange = (e) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
+    const [query, setQuery] = useState<string>('');
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (query.trim() === '') {
@@ -40,4 +44,6 @@ export default function SearchBar({onSubmit}) {
       </form>
     </header>
   );
-}
+};
+
+export default SearchBar;
