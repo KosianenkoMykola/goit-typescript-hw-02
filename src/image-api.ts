@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+import { Image } from './types';
 
 const key = '8kz6qX3JDJw2lhxVpc-SBzdhuyqicQUdiHduys9-8sU';
 axios.defaults.baseURL = 'https://api.unsplash.com';
@@ -7,19 +8,6 @@ type FetchImagesParams = {
   topic: string;
   page?: number;
 };
-
-export interface Image {
-  id: string;
-  urls:{
-    raw: string
-    full: string
-    regular: string
-    small: string
-    thumb:string
-  };
-  alt_description: string;
-  description: string;
-}
 
 interface FetchImagesResponse {
   results: Image[];

@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import css from './ImageModal.module.css';
-import { Image } from '../../image-api';
+import { Image } from '../../types';
 
 interface ImageModalProps {
   isOpen: boolean;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from '../../image-api';
+import { Image } from '../../types';
 import css from './ImageCard.module.css';
 
 interface ImageCardProps {

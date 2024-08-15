@@ -5,7 +5,8 @@ import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ImageModal from '../ImageModal/ImageModal';
-import { fetchImages, Image } from '../../image-api';
+import { fetchImages } from '../../image-api';
+import { Image } from '../../types';
 import css from '../App/App.module.css';
 
 
